@@ -1,7 +1,10 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+pub mod inputs {
+    use std::fs::File;
+    use std::io;
+    use std::io::BufRead;
+
+    pub fn read_lines(filename: &str) -> io::Result<io::Lines<io::BufReader<File>>> {
+        let file = File::open(filename)?;
+        Ok(io::BufReader::new(file).lines())
     }
 }
