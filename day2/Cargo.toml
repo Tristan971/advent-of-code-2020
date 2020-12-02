@@ -1,5 +1,5 @@
 [package]
-name = "advent-of-code-2020"
+name = "day2"
 version = "0.1.0"
 authors = ["Tristan Deloche <tde@hey.com>"]
 edition = "2018"
@@ -7,15 +7,3 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-
-[lib]
-name = "common"
-path = "common/src/lib.rs"
-
-[[bin]]
-name = "day1"
-path = "day1/src/main.rs"
-
-[[bin]]
-name = "day2"
-path = "day2/src/main.rs"
