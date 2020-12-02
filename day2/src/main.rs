@@ -11,7 +11,11 @@ struct PassSpec {
 }
 
 fn main() {
+    println!("Official:");
     count_valid("input");
+
+    println!("Big input:");
+    count_valid("input_big");
 }
 
 fn count_valid(path: &str) {
