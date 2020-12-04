@@ -19,8 +19,16 @@ lazy_static! {
 }
 
 fn main() {
+    println!("Input OFFICIAL:");
+    run_input("input");
+
+    println!("Input BIG:");
+    run_input("input_big");
+}
+
+fn run_input(input: &str) {
     let mut content = String::new();
-    File::open("input")
+    File::open(input)
         .map(BufReader::new)
         .unwrap()
         .read_to_string(&mut content)
