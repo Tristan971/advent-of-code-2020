@@ -1,12 +1,7 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use advent_of_code_2020::common::inputs;
 
 fn main() {
-    let lines = File::open("src/bin/day3/input")
-        .map(BufReader::new)
-        .map(|br| br.lines().map(|l| l.unwrap()))
-        .unwrap()
-        .collect::<Vec<String>>();
+    let lines = inputs::fread_lines("src/bin/day3/input");
 
     let slope_3_1 = count_trees_for_slope(3, 1, &lines);
     println!("Part 1: {}", slope_3_1);

@@ -1,11 +1,8 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use advent_of_code_2020::common::inputs;
 
 fn main() {
-    let mut sids = File::open("src/bin/day5/input")
-        .map(BufReader::new)
-        .map(|br| br.lines().map(|l| l.unwrap()))
-        .unwrap()
+    let mut sids = inputs::fread_lines("src/bin/day5/input")
+        .iter()
         .map(|line| to_sid(line))
         .collect::<Vec<u32>>();
     sids.sort_unstable();
@@ -25,7 +22,7 @@ fn main() {
     }
 }
 
-fn to_sid(boarding_pass: String) -> u32 {
+fn to_sid(boarding_pass: &String) -> u32 {
     let bytes = boarding_pass
         .replace("B", "1")
         .replace("R", "1")

@@ -1,7 +1,7 @@
 use std::collections::LinkedList;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 use std::ops::BitXor;
+
+use advent_of_code_2020::common::inputs;
 
 struct PassSpec {
     first: usize,
@@ -19,10 +19,8 @@ fn main() {
 }
 
 fn count_valid(path: &str) {
-    let lines = File::open(path)
-        .map(BufReader::new)
-        .map(|br| br.lines().map(|l| l.unwrap()))
-        .unwrap()
+    let lines = inputs::fread_lines(path)
+        .iter()
         .map(|l| to_spec(l))
         .collect::<LinkedList<PassSpec>>();
 
@@ -39,7 +37,7 @@ fn count_valid(path: &str) {
     println!("Part 2: Found {} valid password", vp2.len());
 }
 
-fn to_spec(line: String) -> PassSpec {
+fn to_spec(line: &String) -> PassSpec {
     let groups = line.split(" ").collect::<Vec<&str>>();
 
     let minmax = groups[0].split("-").collect::<Vec<&str>>();

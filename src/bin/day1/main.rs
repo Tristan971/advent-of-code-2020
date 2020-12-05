@@ -1,6 +1,6 @@
 use std::collections::HashSet;
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+
+use advent_of_code_2020::common::inputs;
 
 fn main() {
     println!("Day1!");
@@ -13,10 +13,9 @@ fn main() {
 }
 
 fn parts(input: &str, sum: &i64) {
-    let expenses = File::open(input)
-        .map(BufReader::new)
-        .map(|br| br.lines().map(|l| l.unwrap().parse::<i64>().unwrap()))
-        .unwrap()
+    let expenses = inputs::fread_lines(input)
+        .iter()
+        .map(|line| line.parse::<i64>().unwrap())
         .collect::<HashSet<i64>>();
 
     // part 1
