@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let lines = File::open("input")
+    let lines = File::open("src/bin/day3/input")
         .map(BufReader::new)
         .map(|br| br.lines().map(|l| l.unwrap()))
         .unwrap()

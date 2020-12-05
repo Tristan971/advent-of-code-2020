@@ -6,10 +6,10 @@ fn main() {
     println!("Day1!");
 
     println!("Input");
-    parts("input", &2020);
+    parts("src/bin/day1/input", &2020);
 
     println!("BIG input");
-    parts("input_big", &99920044);
+    parts("src/bin/day1/input_big", &99920044);
 }
 
 fn parts(input: &str, sum: &i64) {

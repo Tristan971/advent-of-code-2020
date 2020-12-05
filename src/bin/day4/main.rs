@@ -20,10 +20,10 @@ lazy_static! {
 
 fn main() {
     println!("Input OFFICIAL:");
-    run_input("input");
+    run_input("src/bin/day4/input");
 
     println!("Input BIG:");
-    run_input("input_big");
+    run_input("src/bin/day4/input_big");
 }
 
 fn run_input(input: &str) {

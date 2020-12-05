@@ -12,10 +12,10 @@ struct PassSpec {
 
 fn main() {
     println!("Official:");
-    count_valid("input");
+    count_valid("src/bin/day2/input");
 
     println!("Big input:");
-    count_valid("input_big");
+    count_valid("src/bin/day2/input_big");
 }
 
 fn count_valid(path: &str) {
