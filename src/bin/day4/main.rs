@@ -7,6 +7,8 @@ use std::io::{BufReader, Read};
 
 use regex::Regex;
 
+use advent_of_code_2020::passport::passport::{parse_passport, Passport};
+
 lazy_static! {
     static ref R_BYR: Regex = Regex::new(r"^(19[2-9][0-9])|(200[0-2])$").unwrap();
     static ref R_IYR: Regex = Regex::new(r"^20(1[0-9]|20)$").unwrap();
