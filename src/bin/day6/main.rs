@@ -51,8 +51,5 @@ fn read_group(group_in: &str) -> HashMap<char, i32> {
         appearances.insert('\n', 0);
     }
 
-    println!("Gin: {}", group_in);
-    println!("Group: {:#?}", appearances);
-
     return appearances;
 }
