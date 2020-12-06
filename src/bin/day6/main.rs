@@ -1,10 +1,6 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufReader, Read};
-
-use regex::internal::Char;
-
-use advent_of_code_2020::common::inputs;
 
 fn main() {
     run_input("src/bin/day6/input");
