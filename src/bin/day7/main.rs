@@ -18,25 +18,14 @@ fn main() {
         .map(|spec| to_bag(spec))
         .collect::<Vec<Bag>>();
 
-    for bag in bags.iter() {
-        println!("Bag: {}", bag.attrs);
-        for contained_bag in bag.contained_bags.iter() {
-            println!("  {} {}", contained_bag.n, contained_bag.attrs)
-        }
-    }
-
     let containers = attr_to_containers(&bags);
 
     let containers_shiny_gold = containers_of(String::from("shiny gold"), &containers);
-    println!(
-        "Containers of shiny gold: {:#?} - {}",
-        containers_shiny_gold,
-        containers_shiny_gold.len()
-    );
+    println!("Containers of shiny gold: {}", containers_shiny_gold.len());
 
     let containings = attrs_to_containing(&bags);
     let containings_sg = containings_of("shiny gold", &containings);
-    println!("A shiny gold contains {} bags", containings_sg);
+    println!("A shiny gold contains: {} bags", containings_sg);
 }
 
 fn containers_of(
