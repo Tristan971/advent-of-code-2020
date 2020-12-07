@@ -25,7 +25,7 @@ fn main() {
         }
     }
 
-    let containers = to_containers(bags);
+    let containers = attr_to_containers(&bags);
 
     let containers_shiny_gold = containers_of(String::from("shiny gold"), &containers);
     println!(
@@ -33,6 +33,10 @@ fn main() {
         containers_shiny_gold,
         containers_shiny_gold.len()
     );
+
+    let containings = attrs_to_containing(&bags);
+    let containings_sg = containings_of("shiny gold", &containings);
+    println!("A shiny gold contains {} bags", containings_sg);
 }
 
 fn containers_of(
@@ -53,13 +57,27 @@ fn containers_of(
 
     while !to_inspect.is_empty() {
         let parent = to_inspect.pop_front().unwrap();
-
-        all_containers.get(parent).unwrap().iter().for_each(|pc| {
-            containers.insert(pc);
-        })
+        match all_containers.get(parent) {
+            None => {}
+            Some(parent_parents) => {
+                parent_parents.iter().for_each(|pc| {
+                    containers.insert(pc);
+                    to_inspect.push_back(pc);
+                });
+            }
+        }
     }
 
     return containers;
+}
+
+fn containings_of(attrs: &str, all_containings: &HashMap<String, &Vec<ContainedBag>>) -> i32 {
+    let contained = *all_containings.get(attrs).unwrap();
+
+    return contained
+        .iter()
+        .map(|kid| kid.n + kid.n * containings_of(&kid.attrs, all_containings))
+        .sum::<i32>();
 }
 
 fn to_bag(spec: &str) -> Bag {
@@ -99,7 +117,7 @@ fn to_bag(spec: &str) -> Bag {
     };
 }
 
-fn to_containers(bags: Vec<Bag>) -> HashMap<String, HashSet<String>> {
+fn attr_to_containers(bags: &Vec<Bag>) -> HashMap<String, HashSet<String>> {
     let mut containers: HashMap<String, HashSet<String>> = HashMap::new();
 
     for bag in bags.iter() {
@@ -113,4 +131,15 @@ fn to_containers(bags: Vec<Bag>) -> HashMap<String, HashSet<String>> {
     }
 
     return containers;
+}
+
+fn attrs_to_containing(bags: &Vec<Bag>) -> HashMap<String, &Vec<ContainedBag>> {
+    let mut bagz: HashMap<String, &Vec<ContainedBag>> = HashMap::new();
+
+    for bag in bags {
+        bagz.entry(bag.attrs.clone())
+            .or_insert_with(|| &bag.contained_bags);
+    }
+
+    return bagz;
 }
