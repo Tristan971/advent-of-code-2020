@@ -46,9 +46,6 @@ fn part_1(numbers: &Vec<i64>, window_size: usize) -> Option<i64> {
         if couple_exists.is_none() {
             println!("No complement for {} in window {:?}", sum_target, window);
             return Some(*sum_target);
-        } else {
-            let pair = couple_exists.unwrap();
-            // println!("{} + {} = {}", pair.0, pair.1, sum_target);
         }
     }
 
@@ -65,17 +62,17 @@ fn part_2(numbers: &Vec<i64>, target: i64) {
             .iter()
             .skip(offset)
             .take_while(|&v| {
-                if sum == target {
+                return if sum == target {
                     // already there
-                    return false;
+                    false
                 } else if sum < target {
                     // need more
                     sum += v;
-                    return true;
+                    true
                 } else {
                     // already above
-                    return false;
-                }
+                    false
+                };
             })
             .collect::<Vec<&i64>>();
 
