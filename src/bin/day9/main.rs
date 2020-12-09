@@ -44,7 +44,7 @@ fn part_1(numbers: &Vec<i64>, window_size: usize) -> Option<i64> {
             };
         });
         if couple_exists.is_none() {
-            println!("No complement for {} in window {:?}", sum_target, window);
+            println!("No complement for {}", sum_target);
             return Some(*sum_target);
         }
     }
@@ -78,8 +78,10 @@ fn part_2(numbers: &Vec<i64>, target: i64) {
 
         if sum <= target {
             println!(
-                "From offset {}, we have the contiguous {:?} summing to {}",
-                offset, group, target
+                "Range [{}..{}] sums to {}",
+                offset,
+                offset + group.len(),
+                target
             );
             result = Some(group);
             break;
