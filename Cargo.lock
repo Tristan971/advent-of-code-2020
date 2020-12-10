@@ -6,6 +6,7 @@ version = "0.1.0"
 dependencies = [
  "lazy_static",
  "regex",
+ "rug",
 ]
 
 [[package]]
@@ -18,10 +19,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "az"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9bcd47d94aa4eb8c076b50fc61a75020789394ffb9bd74a180b3379130f6569"
+
+[[package]]
+name = "gmp-mpfr-sys"
+version = "1.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a57fdb339d49833021b1fded600ed240ae907e33909d5511a61dff884df7f16e"
+dependencies = [
+ "libc",
+ "winapi",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
+name = "libc"
+version = "0.2.81"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1482821306169ec4d07f6aca392a4681f66c75c9918aa49641a2595db64053cb"
 
 [[package]]
 name = "memchr"
@@ -48,6 +71,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3b181ba2dcf07aaccad5448e8ead58db5b742cf85dfe035e2227f137a539a189"
 
 [[package]]
+name = "rug"
+version = "1.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e538d00da450a8e48aac7e6322e67b2dc86ec71a1feeac0e3954c4f07f01bc45"
+dependencies = [
+ "az",
+ "gmp-mpfr-sys",
+ "libc",
+]
+
+[[package]]
 name = "thread_local"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -55,3 +89,25 @@ checksum = "d40c6d1b69745a6ec6fb1ca717914848da4b44ae29d9b3080cbee91d72a69b14"
 dependencies = [
  "lazy_static",
 ]
+
+[[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"

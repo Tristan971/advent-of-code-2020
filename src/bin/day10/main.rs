@@ -1,9 +1,23 @@
 use std::collections::{HashMap, HashSet};
+use std::ops::{Add, Mul};
+
+use rug::{Float, Integer};
 
 use advent_of_code_2020::common::inputs;
 
 fn main() {
-    let mut adapters = inputs::fread_lines("src/bin/day10/input")
+    // official
+    run_for_input("src/bin/day10/input");
+
+    // both probably wrong due to bigint stuff
+    // big100k
+    //run_for_input("src/bin/day10/big_input_100k");
+    // big1M
+    //run_for_input("src/bin/day10/big_input_1M");
+}
+
+fn run_for_input(input: &str) {
+    let mut adapters = inputs::fread_lines(input)
         .iter()
         .map(|line| line.parse::<i32>().unwrap())
         .collect::<Vec<i32>>();
@@ -14,8 +28,8 @@ fn main() {
 }
 
 fn part1(adapters: &Vec<i32>) {
-    let mut diff1 = 0;
-    let mut diff3 = 0;
+    let mut diff1 = Integer::from(0 as i8);
+    let mut diff3 = Integer::from(0 as i8);
 
     for i in 0..adapters.len() {
         let cur = adapters.get(i).unwrap();
@@ -33,7 +47,8 @@ fn part1(adapters: &Vec<i32>) {
 
     diff3 += 1;
 
-    println!("Silver: {} (1 -> {}, 3 -> {})", diff1 * diff3, diff1, diff3);
+    let result = diff1.mul(diff3);
+    println!("Silver: {}", result);
 }
 
 fn part2(adapters: &Vec<i32>) {
@@ -41,19 +56,21 @@ fn part2(adapters: &Vec<i32>) {
 
     let display = adapters.get(adapters.len() - 1).unwrap() + 3;
     let permutations = count_permutations_to(display, &lookup, &mut HashMap::new());
+
     println!("Permutations: {}", permutations);
+    println!("log10(permutations): {}", log10(permutations))
 }
 
 fn count_permutations_to(
     adapter: i32,
     adapters: &HashSet<i32>,
-    memoize: &mut HashMap<i32, i64>,
-) -> i64 {
-    let mut predecessors = 0;
+    memoize: &mut HashMap<i32, Integer>,
+) -> Integer {
+    let mut predecessors = Integer::from(0);
     for diff in 1..4 {
         let predecessor = adapter - diff;
         if predecessor == 0 {
-            predecessors += 1;
+            predecessors += 1 as i8;
         }
 
         if adapters.contains(&predecessor) {
@@ -65,6 +82,11 @@ fn count_permutations_to(
         }
     }
 
-    memoize.insert(adapter, predecessors);
+    memoize.insert(adapter, predecessors.clone());
     return predecessors;
+}
+
+fn log10(i: Integer) -> Float {
+    let zero = Float::new(16);
+    return zero.add(i).log10();
 }
