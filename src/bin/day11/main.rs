@@ -1,5 +1,3 @@
-use std::iter::FromIterator;
-
 use advent_of_code_2020::common::inputs;
 
 struct Direction {
@@ -125,12 +123,6 @@ fn read_initial_seats(lines: &Vec<String>) -> Vec<Vec<char>> {
         .iter()
         .map(|line| line.chars().collect::<Vec<char>>())
         .collect::<Vec<Vec<char>>>();
-}
-
-fn print_seats(seats: &Vec<Vec<char>>) {
-    seats
-        .iter()
-        .for_each(|row| println!("|{}|", String::from_iter(row.iter())));
 }
 
 fn get_occupieds_adj(x: usize, y: usize, seats: &Vec<Vec<char>>) -> i32 {
