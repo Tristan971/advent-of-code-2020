@@ -130,7 +130,7 @@ fn combinatorics_mem_bytes(mem_bytes: &Vec<char>, i: usize) -> Vec<Vec<char>> {
         return res;
     }
 
-    if mem_bytes[i] == 'X' {
+    return if mem_bytes[i] == 'X' {
         let mut combinations: Vec<Vec<char>> = Vec::new();
 
         let mut opt_0 = mem_bytes.clone();
@@ -147,8 +147,8 @@ fn combinatorics_mem_bytes(mem_bytes: &Vec<char>, i: usize) -> Vec<Vec<char>> {
             .iter()
             .for_each(|opt| combinations.push(opt.to_owned()));
 
-        return combinations;
+        combinations
     } else {
-        return combinatorics_mem_bytes(mem_bytes, i + 1);
-    }
+        combinatorics_mem_bytes(mem_bytes, i + 1)
+    };
 }
